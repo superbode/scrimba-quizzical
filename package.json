@@ -1,0 +1,20 @@
+{
+  "name": "Scrim-s04vvhd",
+  "description": "https://scrimba.com/learn-react-c0e/~05i/s0gh6bt2ku/head",
+  "scripts": {
+    "watch": "webpack -w",
+    "build": "webpack"
+  },
+  "dependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "html-entities": "2.6.0",
+    "webpack": "^2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.0",
+    "babel-loader": "^7.0",
+    "babel-preset-env": "*",
+    "babel-preset-react": "*"
+  }
+}
