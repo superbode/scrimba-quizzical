@@ -69,7 +69,7 @@ export default function Quiz({toggleShowIntro}) {
     }
     
     return (
-        <>
+        <React.Fragment>
             <img className="top-right small" src="../images/topright-blob.png"/>
             
             <section className="quiz">
@@ -84,6 +84,6 @@ export default function Quiz({toggleShowIntro}) {
                 </div>
             : null}
             <img className="bottom-left small" src="../images/bottomleft-blob.png"/>
-        </>
+        </React.Fragment>
     )
 }
