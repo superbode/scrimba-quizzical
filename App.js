@@ -10,9 +10,9 @@ export default function App() {
     }
     
     return (
-        <>
+        <React.Fragment>
             {showIntro && <IntroPage toggleShowIntro={toggleShowIntro}/>}
             {!showIntro && <Quiz toggleShowIntro={toggleShowIntro}/>}
-        </>
+        </React.Fragment>
     )
 }
