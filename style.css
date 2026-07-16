@@ -53,7 +53,7 @@ button.start-quiz {
 }
 
 img.top-right {
-    width: 30%;
+    width: 20%;
     position: fixed;
     top: 0;
     right: 0;
@@ -61,7 +61,7 @@ img.top-right {
 }
 
 img.bottom-left {
-    width: 30%;
+    width: 20%;
     position: fixed;
     bottom: 0;
     left: 0;
