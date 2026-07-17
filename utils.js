@@ -37,3 +37,21 @@ function shuffleArray(array) {
     
     return array
 }
+
+export function buildApiUrl({ numQuestions, category, difficulty }) {
+    const params = new URLSearchParams();
+    
+    const amount = Math.min(parseInt(numQuestions) || 10, 50);
+    params.append("amount", amount);
+    params.append("type", "multiple");
+
+    if (category && category !== "0" && category !== 0) {
+        params.append("category", category);
+    }
+
+    if (difficulty && difficulty !== "" && difficulty !== "0") {
+        params.append("difficulty", difficulty);
+    }
+
+    return `https://opentdb.com/api.php?${params.toString()}`;
+}

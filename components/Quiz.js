@@ -1,12 +1,21 @@
 import React from "react"
 import Question from "./Question"
 import Answer from "./Answer"
-import { parseTrivia, NUMBER_OF_QUESTIONS, NUMBER_OF_ANSWERS_PER_QUESTION } from "./../utils"
+import { parseTrivia, buildApiUrl, NUMBER_OF_ANSWERS_PER_QUESTION } from "./../utils"
 
-export default function Quiz({toggleShowIntro}) {
+export default function Quiz({formData, toggleShowIntro}) {
     const [triviaQuestions, setTriviaQuestions] = React.useState([])
     const [selectedAnswers, setSelectedAnswers] = React.useState(() => populateSelectedAnswers())
     const [quizSubmitted, setQuizSubmitted] = React.useState(false)
+    
+    const fetchUrl = buildApiUrl(formData)
+    
+    function populateSelectedAnswers() {
+        const numQuestions = parseInt(formData.numQuestions)
+        return new Array(numQuestions).fill(null).map(() => 
+            new Array(NUMBER_OF_ANSWERS_PER_QUESTION).fill(false)
+        )
+    }
     
     let numOfCorrectAnswers = 0
     for (let i = 0; quizSubmitted && i < triviaQuestions.length; i++) {
@@ -15,18 +24,25 @@ export default function Quiz({toggleShowIntro}) {
         }
     }
     
-    function populateSelectedAnswers() {
-        return (new Array(NUMBER_OF_QUESTIONS).fill(null).map((_, i) =>
-            new Array(NUMBER_OF_ANSWERS_PER_QUESTION).fill(false))
-        )
-    }
     
     React.useEffect(() => {
-        fetch(`https://opentdb.com/api.php?amount=${NUMBER_OF_QUESTIONS}&category=15&difficulty=easy&type=multiple`)
-            .then(res => res.json())
-            .then(data => setTriviaQuestions(parseTrivia(data.results)))
-            .catch(err => console.error("Fetch error: " + err))
-    }, [])
+        if (!fetchUrl) return;
+        
+        fetch(fetchUrl)
+        .then(res => {
+            if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+            return res.json();
+        })
+        .then(data => {
+            if (data.response_code !== 0) {
+                console.error("API Error Code:", data.response_code);
+            }
+            setTriviaQuestions(parseTrivia(data.results || []));
+        })
+        .catch(err => {
+            console.error("Fetch error:", err);
+        });
+    }, [fetchUrl])
     
     const triviaQuestionElements = triviaQuestions && triviaQuestions.length > 0 
         ? triviaQuestions.map((triviaQuestion, qIndex) => (
@@ -69,7 +85,7 @@ export default function Quiz({toggleShowIntro}) {
     }
     
     return (
-        <React.Fragment>
+        <>
             <img className="top-right small" src="../images/topright-blob.png"/>
             
             <section className="quiz">
@@ -84,6 +100,6 @@ export default function Quiz({toggleShowIntro}) {
                 </div>
             : null}
             <img className="bottom-left small" src="../images/bottomleft-blob.png"/>
-        </React.Fragment>
+        </>
     )
 }

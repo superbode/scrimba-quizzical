@@ -1,23 +1,20 @@
-# Quizzical
-
-A React trivia quiz app built as part of the [Scrimba Learn React](https://scrimba.com/learn-react-c0e) course.
-
-## What it does
-
-Quizzical fetches 10 multiple-choice trivia questions from the [Open Trivia Database](https://opentdb.com/) (video games category, easy difficulty) and presents them one by one. After selecting an answer for each question, the user submits to see their score. Correct and incorrect answers are highlighted, and the user can play again.
-
-## Getting Started
-
-Install the dependencies and build the project:
-
+# Getting Started
+Install the dependencies and run the project in watch mode
 ```
 npm install
-npm run build   # or `npm run watch` to rebuild on change
+npm run build # or watch to rebuild on change
 open index.html
 ```
+Note that using Webpack is obselete and this archive has been provided
+for compatibility reasons. Prefer using Vite, check it at https://vitejs.dev
+## About Scrimba
 
-## Tech Stack
+At Scrimba our goal is to create the best possible coding school at the cost of a gym membership! 💜
+If we succeed with this, it will give anyone who wants to become a software developer a realistic shot at succeeding, regardless of where they live and the size of their wallets 🎉
+The Fullstack Developer Path aims to teach you everything you need to become a Junior Developer, or you could take a deep-dive with one of our advanced courses 🚀
 
-- React 17
-- Open Trivia Database API
-- Webpack / Babel
+- [Our courses](https://scrimba.com/courses)
+- [The Frontend Career Path](https://scrimba.com/fullstack-path-c0fullstack)
+- [Become a Scrimba Pro member](https://scrimba.com/pricing)
+
+Happy Coding!

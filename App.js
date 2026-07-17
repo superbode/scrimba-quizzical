@@ -4,15 +4,39 @@ import Quiz from "./components/Quiz"
 
 export default function App() {
     const [showIntro, setShowIntro] = React.useState(true)
-    
+    const [formData, setFormData] = React.useState({
+        numQuestions: 10,
+        category: 0,
+        difficulty: ""
+    });
+
     function toggleShowIntro() {
-        setShowIntro(prevShowIntro => !prevShowIntro)
+        setShowIntro(prev => !prev);
     }
-    
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
     return (
-        <React.Fragment>
-            {showIntro && <IntroPage toggleShowIntro={toggleShowIntro}/>}
-            {!showIntro && <Quiz toggleShowIntro={toggleShowIntro}/>}
-        </React.Fragment>
+        <>
+            {showIntro && 
+                <IntroPage 
+                    toggleShowIntro={toggleShowIntro}
+                    formData={formData}
+                    handleChange={handleChange}
+                />
+            }
+            
+            {!showIntro && 
+                <Quiz 
+                    formData={formData}
+                    toggleShowIntro={toggleShowIntro}
+                />
+            }
+        </>
     )
 }
