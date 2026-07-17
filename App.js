@@ -25,7 +25,7 @@ export default function App() {
     };
     
     return (
-        <>
+        <React.Fragment>
             {showIntro && 
                 <IntroPage 
                     toggleShowIntro={toggleShowIntro}
@@ -40,6 +40,6 @@ export default function App() {
                     toggleShowIntro={toggleShowIntro}
                 />
             }
-        </>
+        </React.Fragment>
     )
 }
