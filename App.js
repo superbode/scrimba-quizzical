@@ -18,7 +18,7 @@ export default function App() {
         const { name, value } = e.target;
         
         setFormData(prev => {
-            const newData = { ...prev };   // or use Object.assign if needed
+            const newData = Object.assign({}, prev);
             newData[name] = value;
             return newData;
         });
