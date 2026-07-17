@@ -16,11 +16,14 @@ export default function App() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
+        
+        setFormData(prev => {
+            const newData = { ...prev };   // or use Object.assign if needed
+            newData[name] = value;
+            return newData;
+        });
     };
+    
     return (
         <>
             {showIntro && 
